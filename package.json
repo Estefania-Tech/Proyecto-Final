@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "miprimeraapp",
   "version": "0.0.0",
   "scripts": {
@@ -34,5 +35,30 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.4.2"
+=======
+  "name": "notas-proyecto-backend-300h",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Estefania-Tech/notas--proyecto-backend-300h.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Estefania-Tech/notas--proyecto-backend-300h/issues"
+  },
+  "homepage": "https://github.com/Estefania-Tech/notas--proyecto-backend-300h#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "mongoose": "^8.19.2"
+>>>>>>> 6c4faae (Actaulización del backend)
   }
 }
