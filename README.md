@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Proyecto-Final
 Unión entre el Backend y  Fronted usando Angular CLI
 =======
@@ -30,3 +31,6 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 >>>>>>> 130e658 (initial commit)
+=======
+# notas--proyecto-backend-300h
+>>>>>>> f2f1aa4 ( README.md)
