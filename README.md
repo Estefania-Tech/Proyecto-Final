@@ -3,6 +3,8 @@
 # Proyecto-Final
 Unión entre el Backend y  Fronted usando Angular CLI
 =======
+NOTA IMPORTANTE: al subir todo a github se daño, como no sabia como subir las carpetas a github, me guie por  chatgpt, arreglaba el proyecto, pero cada vez 
+que subia los cambios a git se dañaba
 # Miprimeraapp
 
 El proyecto final tiene como objetivo conectar el backend con el fronted, por tanto el siguiente proyecto es de notas
