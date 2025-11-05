@@ -1,0 +1,17 @@
+<div class="login-container">
+  <h2>Iniciar Sesión</h2>
+  <form (ngSubmit)="login()" class="login-form">
+    <label for="correo">Correo:</label>
+    <input type="email" [(ngModel)]="correo" name="correo" required />
+
+    <label for="contrasena">Contraseña:</label>
+    <input type="password" [(ngModel)]="contrasena" name="contrasena" required />
+
+    <button type="submit">Ingresar</button>
+
+    <p *ngIf="error" style="color: red;">{{ error }}</p>
+    <a routerLink="/register">Registrarse</a>
+  </form>
+  
+
+</div>

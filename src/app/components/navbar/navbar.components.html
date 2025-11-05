@@ -1,0 +1,10 @@
+<nav class="navbar">
+  <div class="navbar-logo">
+    📝 <span>Mis Notas</span>
+  </div>
+
+  <div class="navbar-user">
+    <span *ngIf="usuario">👋 Hola, {{ usuario.nombre }}</span>
+    <button (click)="cerrarSesion()">Cerrar sesión</button>
+  </div>
+</nav>

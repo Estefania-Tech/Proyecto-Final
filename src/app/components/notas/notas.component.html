@@ -1,0 +1,48 @@
+<div class="notas-container">
+  <h2>📝 Mis Notas</h2>
+
+  <form (ngSubmit)="guardarNota()" class="formulario-nota">
+    <input
+      type="text"
+      placeholder="Título"
+      [(ngModel)]="nuevaNota.titulo"
+      name="titulo"
+      required
+    />
+
+    <textarea
+      placeholder="Contenido"
+      [(ngModel)]="nuevaNota.contenido"
+      name="contenido"
+      required
+    ></textarea>
+
+    <select [(ngModel)]="nuevaNota.categoria" name="categoria">
+      <option value="personal">Personal</option>
+      <option value="trabajo">Trabajo</option>
+      <option value="estudio">Estudio</option>
+    </select>
+
+    <button type="submit">
+      {{ editandoId ? 'Actualizar nota ✏️' : 'Agregar nota ➕' }}
+    </button>
+  </form>
+
+  <p *ngIf="mensaje" class="mensaje">{{ mensaje }}</p>
+
+  <div *ngIf="cargando" class="cargando">Cargando notas...</div>
+
+  <div class="lista-notas" *ngIf="!cargando">
+    <div *ngFor="let nota of notas" class="nota">
+      <h3>{{ nota.titulo }}</h3>
+      <p>{{ nota.contenido }}</p>
+      <small>Categoría: {{ nota.categoria }}</small>
+      <div class="acciones">
+        <button (click)="editarNota(nota)">✏️ Editar</button>
+        <button (click)="eliminarNota(nota._id!)" class="eliminar">
+          🗑️ Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
