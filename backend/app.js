@@ -8,16 +8,17 @@ import notasRoutes from "./routes/notasRoutes.js";
 
 dotenv.config();
 const app = express();
+
+// Middlewares
 app.use(express.json());
 app.use(cors());
 
 // Conexión a base de datos
 conectarDB();
 
-// Rutas
+// Ruta principal (prueba)
 app.get("/", (req, res) => {
   res.send("Servidor backend de Notas funcionando correctamente 🚀");
-
 });
 
 // Rutas de la API
@@ -26,3 +27,4 @@ app.use("/api/notas", notasRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Servidor escuchando en puerto ${PORT}`));
+
