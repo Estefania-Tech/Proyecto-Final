@@ -1,32 +1,23 @@
 import Usuario from "../models/usuarioModel.js";
+import bcrypt from 'bcryptjs';
 
 // Crear usuario
 export const crearUsuario = async (req, res) => {
   try {
     const { nombre, correo, contrasena } = req.body;
 
-    if (!nombre || !correo || !contrasena) {
-      return res.status(400).json({ mensaje: 'Todos los campos son obligatorios' });
-    }
+    // Hashear la contraseña
+    const hash = await bcrypt.hash(contrasena, 10);
 
-    const usuarioExistente = await Usuario.findOne({ correo });
-    if (usuarioExistente) {
-      return res.status(409).json({ mensaje: 'El correo ya está registrado' });
-    }
-   
-    const contrasenaHash = await bcrypt.hash(contrasena, 10);
-
-    const nuevoUsuario = new Usuario({
+    const usuario = await Usuario.create({
       nombre,
       correo,
-      contrasena: contrasenaHash
+      contrasena: hash
     });
 
-    await nuevoUsuario.save();
-    res.status(201).json({ mensaje: 'Usuario creado exitosamente', usuario: nuevoUsuario });
+    res.status(201).json(usuario);
   } catch (error) {
-    console.error('Error al crear usuario:', error);
-    res.status(500).json({ mensaje: 'Error interno del servidor' });
+    res.status(400).json({ mensaje: 'Error al crear usuario', error });
   }
 };
 
@@ -46,28 +37,24 @@ export const loginUsuario = async (req, res) => {
     const { correo, contrasena } = req.body;
 
     const usuario = await Usuario.findOne({ correo });
-
     if (!usuario) {
-      return res.status(400).json({ mensaje: "Correo no registrado" });
+      return res.status(400).json({ mensaje: 'Correo o contraseña incorrecta' });
     }
 
-    if (usuario.contrasena !== contrasena) {
-      return res.status(400).json({ mensaje: "Contraseña incorrecta" });
+    // Comparar contraseña con hash
+    const validPassword = await bcrypt.compare(contrasena, usuario.contrasena);
+    if (!validPassword) {
+      return res.status(400).json({ mensaje: 'Correo o contraseña incorrecta' });
     }
 
-    
     res.status(200).json({
-      mensaje: "Inicio de sesión exitoso",
-      usuario: {
-        id: usuario._id,
-        nombre: usuario.nombre,
-        correo: usuario.correo,
-        rol: usuario.rol
-      },
-      token: "fake-jwt-token-" + usuario._id
+      _id: usuario._id,
+      nombre: usuario.nombre,
+      correo: usuario.correo,
+      token: 'aquí-tu-jwt-o-lo-que-usas'
     });
   } catch (error) {
-    res.status(500).json({ mensaje: error.message });
+    res.status(500).json({ mensaje: 'Error al iniciar sesión', error });
   }
 };
 
